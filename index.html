@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SK MODS Bakery & Mart | Freshly Baked Daily</title>
+    <meta name="description" content="Freshly baked breads, cakes, and cookies made with love daily at SK MODS Bakery & Mart.">
+    
+    <!-- Google Fonts: Playfair Display (Serif) & Plus Jakarta Sans (Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-red': '#e11d48',
+                        'brand-pink': '#ffe4e6',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-white font-sans selection:bg-brand-red/20 selection:text-brand-red text-gray-900 overflow-x-hidden">
+    <div id="root" class="min-h-screen pb-24 md:pb-0 relative">
+
+        <!-- ==================== TOP NAVIGATION ==================== -->
+        <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-500 bg-transparent py-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <!-- Brand Logo -->
+                    <a href="#home" class="flex-shrink-0 flex items-center gap-1 cursor-pointer group">
+                        <span id="nav-logo-text" class="font-serif text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-rose-200 tracking-tighter drop-shadow-sm group-hover:opacity-90 transition-all">SK MODS</span>
+                        <div class="w-2.5 h-2.5 rounded-full mb-1 group-hover:scale-150 transition-transform bg-brand-red"></div>
+                    </a>
+
+                    <!-- Desktop Nav Links -->
+                    <div class="hidden md:flex items-center space-x-1">
+                        <a href="#home" class="nav-link relative px-4 py-2 font-medium transition-colors group text-white">
+                            Home
+                            <span class="nav-indicator absolute bottom-0 left-0 w-full h-0.5 transform origin-left transition-transform duration-300 scale-x-100 bg-brand-red"></span>
+                        </a>
+                        <a href="#products" class="nav-link relative px-4 py-2 font-medium transition-colors group text-gray-200 hover:text-white">
+                            Featured
+                            <span class="nav-indicator absolute bottom-0 left-0 w-full h-0.5 transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100 bg-brand-red"></span>
+                        </a>
+                        <a href="#about" class="nav-link relative px-4 py-2 font-medium transition-colors group text-gray-200 hover:text-white">
+                            About
+                            <span class="nav-indicator absolute bottom-0 left-0 w-full h-0.5 transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100 bg-brand-red"></span>
+                        </a>
+                        <a href="#menu" class="nav-link relative px-4 py-2 font-medium transition-colors group text-gray-200 hover:text-white">
+                            Menu
+                            <span class="nav-indicator absolute bottom-0 left-0 w-full h-0.5 transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100 bg-brand-red"></span>
+                        </a>
+                        <a href="#reservation" class="nav-link relative px-4 py-2 font-medium transition-colors group text-gray-200 hover:text-white">
+                            Reservation
+                            <span class="nav-indicator absolute bottom-0 left-0 w-full h-0.5 transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100 bg-brand-red"></span>
+                        </a>
+                        <a href="#contact" class="nav-link relative px-4 py-2 font-medium transition-colors group text-gray-200 hover:text-white">
+                            Contact
+                            <span class="nav-indicator absolute bottom-0 left-0 w-full h-0.5 transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100 bg-brand-red"></span>
+                        </a>
+                    </div>
+
+                    <!-- Desktop Action Buttons -->
+                    <div class="hidden md:flex items-center space-x-3">
+                        <button onclick="focusMenuSearch()" class="nav-action-btn flex items-center px-4 py-2 rounded-full transition-all group text-gray-100 hover:text-white hover:bg-white/10">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2 transform group-hover:scale-110 transition-transform">
+                                <path d="m21 21-4.34-4.34"></path>
+                                <circle cx="11" cy="11" r="8"></circle>
+                            </svg>
+                            <span class="font-medium text-sm">Search</span>
+                        </button>
+                        <button onclick="toggleAccountModal()" class="nav-action-btn flex items-center px-4 py-2 rounded-full transition-all group text-gray-100 hover:text-white hover:bg-white/10">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2 transform group-hover:scale-110 transition-transform">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <span id="account-btn-text" class="font-medium text-sm">My Account</span>
+                        </button>
+                        <button onclick="toggleCartDrawer()" class="nav-action-btn flex items-center px-5 py-2.5 rounded-full transition-all relative group bg-brand-red text-white hover:bg-rose-700 shadow-lg shadow-brand-red/30">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2 transform group-hover:scale-110 transition-transform">
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                <path d="M3.103 6.034h17.794"></path>
+                                <path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path>
+                            </svg>
+                            <span class="font-bold text-sm">Cart</span>
+                            <span id="desktop-cart-badge" class="ml-2 bg-white text-brand-red text-xs font-extrabold px-2 py-0.5 rounded-full">0</span>
+                        </button>
+                    </div>
+
+                    <!-- Mobile Top Action Buttons -->
+                    <div class="flex md:hidden items-center gap-2">
+                        <button onclick="focusMenuSearch()" aria-label="Search" class="mobile-top-btn p-2.5 rounded-full shadow-sm backdrop-blur-sm transition-colors text-white hover:bg-white/20 bg-white/10 border border-white/20">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                <path d="m21 21-4.34-4.34"></path>
+                                <circle cx="11" cy="11" r="8"></circle>
+                            </svg>
+                        </button>
+                        <button onclick="toggleCartDrawer()" aria-label="Cart" class="mobile-top-btn relative p-2.5 rounded-full shadow-sm backdrop-blur-sm transition-colors text-white hover:bg-white/20 bg-white/10 border border-white/20">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                <path d="M3.103 6.034h17.794"></path>
+                                <path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path>
+                            </svg>
+                            <span id="mobile-top-cart-badge" class="absolute -top-1 -right-1 bg-brand-red text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
+                        </button>
+                        <button onclick="toggleMobileMenu()" aria-label="Menu" class="mobile-top-btn p-2.5 rounded-full shadow-sm backdrop-blur-sm transition-colors text-white hover:bg-white/20 bg-white/10 border border-white/20">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                <path d="M4 5h16"></path>
+                                <path d="M4 12h16"></path>
+                                <path d="M4 19h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ==================== MOBILE SLIDE-OUT MENU ==================== -->
+        <div id="mobile-menu-drawer" class="fixed inset-0 z-50 hidden">
+            <div onclick="toggleMobileMenu()" class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"></div>
+            <div class="fixed top-0 right-0 bottom-0 w-72 bg-white z-10 shadow-2xl p-6 flex flex-col justify-between transform transition-transform">
+                <div>
+                    <div class="flex items-center justify-between pb-6 border-b border-gray-100">
+                        <span class="font-serif text-2xl font-black text-brand-red">SK MODS</span>
+                        <button onclick="toggleMobileMenu()" class="p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-rose-50 hover:text-brand-red">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-col space-y-2">
+                        <a href="#home" onclick="toggleMobileMenu()" class="px-4 py-3 rounded-xl font-semibold text-gray-800 hover:bg-rose-50 hover:text-brand-red transition-colors">Home</a>
+                        <a href="#products" onclick="toggleMobileMenu()" class="px-4 py-3 rounded-xl font-semibold text-gray-800 hover:bg-rose-50 hover:text-brand-red transition-colors">Featured Creations</a>
+                        <a href="#about" onclick="toggleMobileMenu()" class="px-4 py-3 rounded-xl font-semibold text-gray-800 hover:bg-rose-50 hover:text-brand-red transition-colors">About Us</a>
+                        <a href="#menu" onclick="toggleMobileMenu()" class="px-4 py-3 rounded-xl font-semibold text-gray-800 hover:bg-rose-50 hover:text-brand-red transition-colors">Full Menu</a>
+                        <a href="#reservation" onclick="toggleMobileMenu()" class="px-4 py-3 rounded-xl font-semibold text-gray-800 hover:bg-rose-50 hover:text-brand-red transition-colors">Table Reservation</a>
+                        <a href="#contact" onclick="toggleMobileMenu()" class="px-4 py-3 rounded-xl font-semibold text-gray-800 hover:bg-rose-50 hover:text-brand-red transition-colors">Contact Us</a>
+                    </div>
+                </div>
+                <div class="border-t border-gray-100 pt-6 space-y-3">
+                    <a href="https://wa.me/923254038592" target="_blank" class="w-full py-3 bg-[#25D366] text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-md">
+                        <span>Order via WhatsApp</span>
+                    </a>
+                    <p class="text-xs text-center text-gray-400">© 2026 SK MODS Bakery</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== MAIN CONTENT ==================== -->
+        <main>
+            <!-- 1. HERO SECTION -->
+            <section id="home" class="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <img alt="Premium raspberry cake background" class="w-full h-full object-cover scale-105 animate-slow-zoom" src="https://ik.imagekit.io/19imy4f1u/lite_1783235885383_nP5VLmAOS.webp">
+                    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/45 to-black/85"></div>
+                </div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-20">
+                    <div class="text-center mx-auto max-w-4xl reveal-up">
+                        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] font-serif font-black text-white leading-[1.05] mb-6 tracking-tighter">
+                            <span class="block text-xl sm:text-2xl lg:text-3xl font-sans font-bold text-rose-300 mb-4 tracking-[0.25em] uppercase">Welcome To</span>
+                            SK MODS Mart
+                        </h1>
+                        <p class="text-lg sm:text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0 font-medium">
+                            Freshly baked breads, cakes, and cookies made with love daily. Taste, joy, warmth, and sweetness in every bite.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0">
+                            <a href="#products" class="w-full sm:w-auto bg-brand-red text-white px-10 py-4 rounded-full font-bold shadow-[0_10px_30px_rgba(225,29,72,0.4)] hover:shadow-[0_15px_35px_rgba(225,29,72,0.6)] hover:bg-rose-700 hover:-translate-y-1 transition-all active:scale-95 text-lg uppercase tracking-wider text-center">
+                                Explore Products
+                            </a>
+                            <a href="#menu" class="w-full sm:w-auto bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-4 rounded-full font-bold hover:bg-white/20 transition-all active:scale-95 text-lg uppercase tracking-wider text-center">
+                                View Menu
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. FEATURED PRODUCTS SECTION -->
+            <section id="products" class="py-24 bg-[#FCF8F5]">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16 reveal-up">
+                        <span class="inline-block py-1.5 px-4 rounded-full bg-rose-100 text-brand-red text-xs font-bold tracking-widest mb-3 uppercase">Handcrafted</span>
+                        <h2 class="text-3xl md:text-5xl font-serif font-black text-gray-900 tracking-wider uppercase">Signature Creations</h2>
+                    </div>
+                    <!-- Populated Dynamically via JS or Fallback Static -->
+                    <div id="featured-products-grid" class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+                        <!-- Rendered by script.js so every card has working Product Modal + Add to Cart -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. CATEGORIES SECTION -->
+            <section id="categories" class="py-24 bg-white relative overflow-hidden">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-brand-red to-transparent opacity-30"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                    <div class="reveal-up">
+                        <span class="inline-block py-1.5 px-4 rounded-full bg-rose-50 text-brand-red text-xs font-bold tracking-widest mb-4 uppercase shadow-sm">Freshly Baked</span>
+                        <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-black text-gray-900 mb-6 tracking-tight">Welcome To Our Store</h2>
+                        <p class="text-gray-500 max-w-2xl mx-auto mb-16 text-lg md:text-xl font-medium leading-relaxed">
+                            Indulge in freshly baked breads, cakes, cookies, and pastries, all crafted daily with love, care, and the finest ingredients to make every bite unforgettable.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                        <!-- Cake Category -->
+                        <div onclick="filterMenuFromCategory('Cake')" class="flex flex-col items-center group cursor-pointer reveal-up">
+                            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-rose-100 flex items-center justify-center mb-5 transition-all duration-500 group-hover:-translate-y-3 group-hover:shadow-[0_20px_40px_-15px_rgba(225,29,72,0.25)] relative">
+                                <div class="absolute inset-0 bg-white/40 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 sm:w-12 sm:h-12 text-rose-600 relative z-10 transform group-hover:scale-110 transition-transform duration-500">
+                                    <path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"></path>
+                                    <path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"></path>
+                                    <path d="M2 21h20"></path>
+                                    <path d="M7 8v3"></path>
+                                    <path d="M12 8v3"></path>
+                                    <path d="M17 8v3"></path>
+                                    <path d="M7 4h.01"></path>
+                                    <path d="M12 4h.01"></path>
+                                    <path d="M17 4h.01"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-serif font-bold text-gray-900 group-hover:text-brand-red transition-colors">Cake</h3>
+                        </div>
+
+                        <!-- Sandwich / Snacks Category -->
+                        <div onclick="filterMenuFromCategory('Snacks')" class="flex flex-col items-center group cursor-pointer reveal-up">
+                            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-amber-100 flex items-center justify-center mb-5 transition-all duration-500 group-hover:-translate-y-3 group-hover:shadow-[0_20px_40px_-15px_rgba(217,119,6,0.25)] relative">
+                                <div class="absolute inset-0 bg-white/40 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 sm:w-12 sm:h-12 text-amber-600 relative z-10 transform group-hover:scale-110 transition-transform duration-500">
+                                    <path d="m2.37 11.223 8.372-6.777a2 2 0 0 1 2.516 0l8.371 6.777"></path>
+                                    <path d="M21 15a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5.25"></path>
+                                    <path d="M3 15a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h9"></path>
+                                    <path d="m6.67 15 6.13 4.6a2 2 0 0 0 2.8-.4l3.15-4.2"></path>
+                                    <rect width="20" height="4" x="2" y="11" rx="1"></rect>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-serif font-bold text-gray-900 group-hover:text-brand-red transition-colors">Sandwich & Snacks</h3>
+                        </div>
+
+                        <!-- Cookies Category -->
+                        <div onclick="filterMenuFromCategory('Cookies')" class="flex flex-col items-center group cursor-pointer reveal-up">
+                            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-orange-100 flex items-center justify-center mb-5 transition-all duration-500 group-hover:-translate-y-3 group-hover:shadow-[0_20px_40px_-15px_rgba(234,88,12,0.25)] relative">
+                                <div class="absolute inset-0 bg-white/40 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 sm:w-12 sm:h-12 text-orange-600 relative z-10 transform group-hover:scale-110 transition-transform duration-500">
+                                    <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path>
+                                    <path d="M8.5 8.5v.01"></path>
+                                    <path d="M16 15.5v.01"></path>
+                                    <path d="M12 12v.01"></path>
+                                    <path d="M11 17v.01"></path>
+                                    <path d="M7 14v.01"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-serif font-bold text-gray-900 group-hover:text-brand-red transition-colors">Cookies</h3>
+                        </div>
+
+                        <!-- Bread Category -->
+                        <div onclick="filterMenuFromCategory('Bread')" class="flex flex-col items-center group cursor-pointer reveal-up">
+                            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-yellow-100 flex items-center justify-center mb-5 transition-all duration-500 group-hover:-translate-y-3 group-hover:shadow-[0_20px_40px_-15px_rgba(202,138,4,0.25)] relative">
+                                <div class="absolute inset-0 bg-white/40 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 sm:w-12 sm:h-12 text-yellow-600 relative z-10 transform group-hover:scale-110 transition-transform duration-500">
+                                    <path d="M10.2 18H4.774a1.5 1.5 0 0 1-1.352-.97 11 11 0 0 1 .132-6.487"></path>
+                                    <path d="M18 10.2V4.774a1.5 1.5 0 0 0-.97-1.352 11 11 0 0 0-6.486.132"></path>
+                                    <path d="M18 5a4 3 0 0 1 4 3 2 2 0 0 1-2 2 10 10 0 0 0-5.139 1.42"></path>
+                                    <path d="M5 18a3 4 0 0 0 3 4 2 2 0 0 0 2-2 10 10 0 0 1 1.42-5.14"></path>
+                                    <path d="M8.709 2.554a10 10 0 0 0-6.155 6.155 1.5 1.5 0 0 0 .676 1.626l9.807 5.42a2 2 0 0 0 2.718-2.718l-5.42-9.807a1.5 1.5 0 0 0-1.626-.676"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-serif font-bold text-gray-900 group-hover:text-brand-red transition-colors">Bread</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. ABOUT SECTION -->
+            <section id="about" class="py-24 bg-gray-900 overflow-hidden relative">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+                        <div class="relative flex justify-center order-2 md:order-1 mt-10 md:mt-0 reveal-left">
+                            <div class="absolute w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] bg-gradient-to-tr from-brand-red via-rose-900 to-transparent rounded-full blur-[80px] -z-10"></div>
+                            <img alt="Delicious cupcake with cherry" class="w-full max-w-[260px] sm:max-w-sm md:max-w-md drop-shadow-[0_25px_35px_rgba(0,0,0,0.5)] z-10 animate-float" src="https://ik.imagekit.io/19imy4f1u/lite_1783138125089_8ZvnoN-FW.png">
+                        </div>
+                        <div class="order-1 md:order-2 reveal-right">
+                            <span class="inline-block py-1.5 px-4 rounded-full bg-white/10 text-rose-200 border border-white/10 text-xs font-bold tracking-widest mb-6 uppercase shadow-sm">Our Story</span>
+                            <h2 class="text-4xl sm:text-5xl lg:text-7xl font-serif font-black text-white mb-6 leading-[1.1] tracking-tight">
+                                About <br>
+                                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-rose-400">SK MODS Bakery</span>
+                            </h2>
+                            <p class="text-gray-300 text-lg leading-relaxed mb-8">
+                                SK MODS Bakery brings joy with every bite. We craft fresh breads, cakes, and pastries daily, using love, care, and quality ingredients to make every treat unforgettable and delightful. Our passion for baking is rooted in tradition, yet we constantly explore new flavors to surprise and delight our community.
+                            </p>
+                            <div class="grid grid-cols-2 gap-6 mb-10 border-y border-white/10 py-6">
+                                <div>
+                                    <p class="text-3xl font-serif font-bold text-white mb-1">20+</p>
+                                    <p class="text-sm text-gray-400 uppercase tracking-wider">Years Experience</p>
+                                </div>
+                                <div>
+                                    <p class="text-3xl font-serif font-bold text-white mb-1">10k+</p>
+                                    <p class="text-sm text-gray-400 uppercase tracking-wider">Happy Customers</p>
+                                </div>
+                            </div>
+                            <a href="#menu" class="inline-flex bg-brand-red text-white px-8 py-3.5 sm:py-4 rounded-full font-bold shadow-[0_8px_20px_rgba(225,29,72,0.3)] hover:shadow-[0_12px_25px_rgba(225,29,72,0.4)] hover:bg-rose-600 transition-all active:scale-95 group items-center gap-2">
+                                Explore Our Menu
+                                <span class="inline-block transform group-hover:translate-x-1 transition-transform">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. INTERACTIVE MENU SECTION -->
+            <section id="menu" class="py-24 relative min-h-screen">
+                <div class="absolute inset-0 z-0 overflow-hidden">
+                    <img alt="Bakery background" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1555507036-ab1f40ce88cb?auto=format&fit=crop&q=80&w=1920&h=1080">
+                    <div class="absolute inset-0 bg-[#FCF8F5]/90 backdrop-blur-[2px]"></div>
+                </div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="text-center mb-12 reveal-up">
+                        <span class="inline-block py-1.5 px-4 rounded-full bg-rose-50 border border-rose-100 text-brand-red text-xs font-bold tracking-widest mb-4 uppercase shadow-sm">Our Menu</span>
+                        <h2 class="text-4xl md:text-6xl lg:text-7xl font-serif font-black text-gray-900 tracking-tight">Discover Our Treats</h2>
+                    </div>
+
+                    <!-- Search & Category Filter Pills -->
+                    <div class="mb-12 max-w-5xl mx-auto">
+                        <div class="flex flex-col gap-6 items-center mb-8">
+                            <div class="relative w-full max-w-md shrink-0">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-gray-400">
+                                        <path d="m21 21-4.34-4.34"></path>
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                    </svg>
+                                </div>
+                                <input id="menu-search-input" placeholder="Search for cakes, cookies, coffee..." class="block w-full pl-11 pr-10 py-3.5 bg-white border border-gray-200 rounded-full text-gray-900 focus:ring-2 focus:ring-brand-red focus:border-brand-red focus:outline-none transition-all shadow-sm placeholder-gray-400" type="text">
+                                <button id="clear-search-btn" onclick="clearMenuSearch()" class="hidden absolute inset-y-0 right-0 pr-4 items-center text-gray-400 hover:text-gray-600">✕</button>
+                            </div>
+
+                            <div id="menu-category-buttons" class="flex gap-2 overflow-x-auto w-full pb-2 hide-scrollbar justify-start md:justify-center">
+                                <button onclick="setMenuCategory('All')" data-category="All" class="category-pill whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-sm border bg-brand-red text-white border-brand-red">All</button>
+                                <button onclick="setMenuCategory('Bread')" data-category="Bread" class="category-pill whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-sm border bg-white text-gray-600 border-gray-200 hover:border-brand-red/30 hover:text-brand-red">Bread</button>
+                                <button onclick="setMenuCategory('Cookies')" data-category="Cookies" class="category-pill whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-sm border bg-white text-gray-600 border-gray-200 hover:border-brand-red/30 hover:text-brand-red">Cookies</button>
+                                <button onclick="setMenuCategory('Cake')" data-category="Cake" class="category-pill whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-sm border bg-white text-gray-600 border-gray-200 hover:border-brand-red/30 hover:text-brand-red">Cake</button>
+                                <button onclick="setMenuCategory('Pastry')" data-category="Pastry" class="category-pill whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-sm border bg-white text-gray-600 border-gray-200 hover:border-brand-red/30 hover:text-brand-red">Pastry</button>
+                                <button onclick="setMenuCategory('Snacks')" data-category="Snacks" class="category-pill whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-sm border bg-white text-gray-600 border-gray-200 hover:border-brand-red/30 hover:text-brand-red">Snacks</button>
+                                <button onclick="setMenuCategory('Coffee')" data-category="Coffee" class="category-pill whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-sm border bg-white text-gray-600 border-gray-200 hover:border-brand-red/30 hover:text-brand-red">Coffee</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Menu Product Grid -->
+                    <div id="menu-products-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 min-h-[400px]">
+                        <!-- Populated by script.js -->
+                    </div>
+
+                    <!-- Pagination Controls -->
+                    <div class="mt-16 flex items-center justify-center gap-4">
+                        <button id="prev-page-btn" onclick="changeMenuPage(-1)" disabled class="px-6 py-2.5 rounded-full border border-gray-200 bg-white text-gray-700 font-medium hover:border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm">
+                            Previous
+                        </button>
+                        <span id="page-indicator" class="text-sm font-bold text-gray-600 px-3">Page 1 of 2</span>
+                        <button id="next-page-btn" onclick="changeMenuPage(1)" class="px-6 py-2.5 rounded-full bg-brand-red text-white font-medium shadow-md hover:bg-rose-900 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all">
+                            Next Page
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. COFFEE PAIRING SECTION -->
+            <section class="py-24 bg-[#FAF6F3] relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-900/5 rounded-full blur-[100px] -z-10 translate-x-1/3 -translate-y-1/3"></div>
+                <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-700/5 rounded-full blur-[80px] -z-10 -translate-x-1/3 translate-y-1/3"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div class="order-2 md:order-1 relative h-[420px] sm:h-[500px] flex items-center justify-center reveal-left">
+                            <div class="absolute w-[300px] h-[300px] bg-gradient-to-tr from-amber-600/20 via-amber-800/10 to-transparent rounded-full blur-[60px] -z-10"></div>
+                            <img alt="Exploding coffee beans and grounds" class="w-full max-w-lg object-contain drop-shadow-[0_20px_20px_rgba(120,53,15,0.3)] mix-blend-multiply animate-float" src="https://ik.imagekit.io/19imy4f1u/lite_1783138679883_O4LNonmgI.png">
+                        </div>
+                        <div class="order-1 md:order-2 reveal-right">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 bg-amber-100/50 border border-amber-200/50 rounded-full mb-6 text-amber-800 font-bold text-sm shadow-sm tracking-wide uppercase">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+                                    <path d="M10 2v2"></path>
+                                    <path d="M14 2v2"></path>
+                                    <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"></path>
+                                    <path d="M6 2v2"></path>
+                                </svg>
+                                <span>Premium Roasts</span>
+                            </div>
+                            <h2 class="text-4xl md:text-5xl lg:text-7xl font-serif font-black text-gray-900 mb-6 leading-[1.1] tracking-tight">
+                                The Perfect Pairing <br><span class="text-amber-800">For Every Pastry</span>
+                            </h2>
+                            <p class="text-lg md:text-xl font-medium text-gray-600 leading-relaxed mb-8">
+                                Discover our signature coffee blends, ethically sourced and roasted to perfection. Whether you prefer a rich, bold espresso or a smooth, creamy latte, our barista-crafted beverages are the ultimate companion to your favorite sweet treats.
+                            </p>
+                            <div class="grid sm:grid-cols-2 gap-6 mb-10">
+                                <div class="bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-amber-900/10 shadow-sm">
+                                    <h4 class="font-serif font-bold text-amber-900 mb-1 text-lg">House Blend</h4>
+                                    <p class="text-sm text-gray-600">Smooth, balanced with notes of dark chocolate and rich caramel.</p>
+                                </div>
+                                <div class="bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-amber-900/10 shadow-sm">
+                                    <h4 class="font-serif font-bold text-amber-900 mb-1 text-lg">Single Origin</h4>
+                                    <p class="text-sm text-gray-600">Bright, fruity floral profiles sourced directly from Ethiopia.</p>
+                                </div>
+                            </div>
+                            <button onclick="filterMenuFromCategory('Coffee')" class="bg-amber-800 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-xl hover:bg-amber-900 transition-all active:scale-95 flex items-center gap-3 group">
+                                Explore Coffee Menu
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 transform group-hover:translate-x-1 transition-transform">
+                                    <path d="M5 12h14"></path>
+                                    <path d="m12 5 7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. LIMITED TIME OFFER (OREO SHAKE) -->
+            <section class="py-24 bg-rose-50 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16 reveal-up">
+                        <div class="inline-flex items-center justify-center p-3 bg-white rounded-2xl mb-6 text-brand-red shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
+                                <path d="M12 6v6l4 2"></path>
+                                <circle cx="12" cy="12" r="10"></circle>
+                            </svg>
+                        </div>
+                        <h2 class="text-4xl font-serif font-bold text-gray-900 mb-4">Limited Time Offer</h2>
+                        <p class="text-gray-600 max-w-2xl mx-auto">Experience our most decadent creation yet. Available only for a limited time at SK MODS Bakery.</p>
+                    </div>
+
+                    <div class="bg-white rounded-3xl shadow-xl shadow-rose-100/50 overflow-hidden border border-rose-100 relative">
+                        <div class="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none select-none overflow-hidden">
+                            <h2 class="text-[150px] font-black leading-none font-sans">OREO<br>CRUNCH</h2>
+                        </div>
+                        <div class="grid lg:grid-cols-2 relative z-10">
+                            <div class="p-8 sm:p-10 lg:p-14 flex flex-col justify-center">
+                                <div class="inline-flex items-center gap-2 text-brand-red font-bold tracking-wider uppercase text-sm mb-4">
+                                    <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+                                    <span>New Arrival</span>
+                                </div>
+                                <h3 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-gray-900 mb-6 leading-tight">
+                                    The Ultimate <br> <span class="text-amber-800">Oreo Shake</span>
+                                </h3>
+                                <p class="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed">
+                                    Dive into a creamy, dreamy blend of real vanilla bean ice cream, crushed Oreo cookies, and a rich chocolate drizzle. Topped with a mountain of whipped cream and an extra Oreo for that perfect crunch.
+                                </p>
+                                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-10">
+                                    <div onclick="copyPromoCode('OREO50')" class="bg-amber-50 px-6 py-4 rounded-2xl border border-amber-200 shadow-sm relative overflow-hidden cursor-pointer hover:bg-amber-100/70 transition-colors" title="Click to copy code">
+                                        <div class="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
+                                        <span class="block text-xs text-gray-500 font-medium mb-1">Click to Copy Checkout Code:</span>
+                                        <span class="font-mono font-black text-2xl text-amber-900 tracking-widest">OREO50</span>
+                                    </div>
+                                    <div class="text-gray-500 font-medium text-sm flex flex-col gap-1">
+                                        <span class="flex items-center gap-1 text-amber-700 font-bold">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-amber-600">
+                                                <path d="M12 6v6l4 2"></path>
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                            </svg>
+                                            Ends this Sunday
+                                        </span>
+                                        <span>*Use code OREO50 for 25% off your order!</span>
+                                    </div>
+                                </div>
+                                <button onclick="claimOreoOffer()" class="bg-gray-900 text-white w-max px-8 py-4 rounded-full font-bold shadow-xl hover:shadow-2xl hover:bg-brand-red transition-all active:scale-95 flex items-center gap-3 group">
+                                    Claim Your Shake ($6.99)
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 transform group-hover:translate-x-1 transition-transform">
+                                        <path d="M5 12h14"></path>
+                                        <path d="m12 5 7 7-7 7"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="relative h-[420px] lg:h-auto lg:min-h-[550px] overflow-hidden bg-amber-50/80 flex items-end justify-center pt-16 px-8 lg:px-12">
+                                <div class="w-full max-w-[420px] relative z-10 origin-bottom flex justify-center translate-y-1">
+                                    <img alt="Exploding Oreo Coffee Splash" class="w-full h-auto object-contain object-bottom drop-shadow-[0_40px_40px_rgba(120,53,15,0.3)] -scale-x-100 animate-float" src="https://ik.imagekit.io/19imy4f1u/lite_1783139366885_6AY37yLmP.png">
+                                </div>
+                                <div class="absolute top-8 right-8 bg-black text-white w-28 h-28 rounded-full flex flex-col items-center justify-center shadow-2xl border-4 border-white z-20 rotate-12">
+                                    <span class="text-xs font-bold uppercase tracking-widest text-amber-200 mb-1">Only</span>
+                                    <span class="text-3xl font-black leading-none">$6.99</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. BEST SELLER SPOTLIGHT -->
+            <section class="py-24 bg-white overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div class="order-2 md:order-1 reveal-left">
+                            <span class="inline-block py-1.5 px-4 rounded-full bg-rose-50 text-brand-red text-xs font-bold tracking-widest mb-4 uppercase shadow-sm">Featured Pick</span>
+                            <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-black text-gray-900 mb-2 leading-tight tracking-tight">Best Seller</h2>
+                            <h3 class="text-3xl md:text-4xl lg:text-5xl font-serif font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-rose-400 mb-6">Decadent Choco Fudge Cake</h3>
+                            <div class="flex items-center gap-4 mb-6">
+                                <span class="text-4xl font-black text-gray-900">$15.00</span>
+                                <div class="flex text-yellow-400 bg-yellow-50 px-4 py-2 rounded-full shadow-sm">
+                                    ★★★★★ <span class="text-xs text-gray-600 font-bold ml-2 self-center">(128 Reviews)</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed mb-10 max-w-lg text-lg font-medium">
+                                Our signature chocolate cake is a decadent delight, baked with rich Belgian cocoa and layered with silky fudge frosting. Moist, fluffy, and irresistibly smooth, it's the perfect indulgence to sweeten celebrations.
+                            </p>
+                            <div class="flex flex-wrap gap-4">
+                                <button onclick="addBestSellerToCart()" class="bg-brand-red text-white px-10 py-4 rounded-full font-bold shadow-[0_8px_20px_rgba(225,29,72,0.3)] hover:shadow-[0_12px_25px_rgba(225,29,72,0.4)] hover:bg-rose-700 hover:-translate-y-1 transition-all active:scale-95 flex items-center gap-3 group text-lg">
+                                    Buy Now — $15.00
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 transform group-hover:translate-x-1.5 transition-transform">
+                                        <path d="M5 12h14"></path>
+                                        <path d="m12 5 7 7-7 7"></path>
+                                    </svg>
+                                </button>
+                                <button onclick="openProductModal(101)" class="px-8 py-4 rounded-full font-bold border-2 border-gray-200 text-gray-700 hover:border-brand-red hover:text-brand-red transition-all">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                        <div onclick="openProductModal(101)" class="order-1 md:order-2 relative flex justify-center cursor-pointer group reveal-right">
+                            <div class="absolute w-[300px] h-[300px] bg-gradient-to-tr from-amber-200 via-rose-300 to-transparent rounded-full blur-[80px] -z-10"></div>
+                            <img alt="Decadent Chocolate Cake Slice" class="w-full max-w-sm md:max-w-md mx-auto object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] z-10 group-hover:scale-105 transition-transform duration-500" src="https://ik.imagekit.io/19imy4f1u/lite_1783138229791_G-qMMtflj.png">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. INFINITE MARQUEE SIGNATURE BAKES -->
+            <section class="py-20 bg-white overflow-hidden relative border-t border-gray-100">
+                <div class="text-center mb-14 px-4">
+                    <span class="inline-block py-1.5 px-4 rounded-full bg-rose-50 text-brand-red text-xs font-bold tracking-widest mb-4 uppercase shadow-sm">Fresh From Oven</span>
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-black text-gray-900 tracking-tight">Our Signature Bakes</h2>
+                </div>
+                <div class="relative w-full overflow-hidden flex items-center">
+                    <div id="signature-marquee" class="flex w-max gap-8 md:gap-12 px-4 animate-marquee hover:pause-marquee">
+                        <!-- Duplicated items for seamless CSS marquee loop -->
+                        <div onclick="filterMenuFromCategory('Pastry')" class="flex-shrink-0 flex flex-col items-center gap-4 cursor-pointer group/item">
+                            <div class="w-32 h-32 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-rose-50 shadow-lg group-hover/item:border-brand-red transition-all duration-500 p-1">
+                                <img alt="Croissant" class="w-full h-full object-cover rounded-full group-hover/item:scale-110 transition-transform duration-700" src="https://ik.imagekit.io/19imy4f1u/lite_1783237786728_gPi-20Qi9.webp">
+                            </div>
+                            <span class="font-serif font-bold text-gray-800 text-lg group-hover/item:text-brand-red">Croissant</span>
+                        </div>
+                        <div onclick="filterMenuFromCategory('Cake')" class="flex-shrink-0 flex flex-col items-center gap-4 cursor-pointer group/item">
+                            <div class="w-32 h-32 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-rose-50 shadow-lg group-hover/item:border-brand-red transition-all duration-500 p-1">
+                                <img alt="Cupcake" class="w-full h-full object-cover rounded-full group-hover/item:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&q=80&w=300&h=300">
+                            </div>
+                            <span class="font-serif font-bold text-gray-800 text-lg group-hover/item:text-brand-red">Cupcake</span>
+                        </div>
+                        <div onclick="filterMenuFromCategory('Pastry')" class="flex-shrink-0 flex flex-col items-center gap-4 cursor-pointer group/item">
+                            <div class="w-32 h-32 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-rose-50 shadow-lg group-hover/item:border-brand-red transition-all duration-500 p-1">
+                                <img alt="Donut" class="w-full h-full object-cover rounded-full group-hover/item:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&q=80&w=300&h=300">
+                            </div>
+                            <span class="font-serif font-bold text-gray-800 text-lg group-hover/item:text-brand-red">Donut</span>
+                        </div>
+                        <div onclick="filterMenuFromCategory('Cookies')" class="flex-shrink-0 flex flex-col items-center gap-4 cursor-pointer group/item">
+                            <div class="w-32 h-32 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-rose-50 shadow-lg group-hover/item:border-brand-red transition-all duration-500 p-1">
+                                <img alt="Macaron" class="w-full h-full object-cover rounded-full group-hover/item:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&q=80&w=300&h=300">
+                            </div>
+                            <span class="font-serif font-bold text-gray-800 text-lg group-hover/item:text-brand-red">Macaron</span>
+                        </div>
+                        <div onclick="filterMenuFromCategory('Pastry')" class="flex-shrink-0 flex flex-col items-center gap-4 cursor-pointer group/item">
+                            <div class="w-32 h-32 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-rose-50 shadow-lg group-hover/item:border-brand-red transition-all duration-500 p-1">
+                                <img alt="Tart" class="w-full h-full object-cover rounded-full group-hover/item:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&q=80&w=300&h=300">
+                            </div>
+                            <span class="font-serif font-bold text-gray-800 text-lg group-hover/item:text-brand-red">Fruit Tart</span>
+                        </div>
+                        <div onclick="filterMenuFromCategory('Bread')" class="flex-shrink-0 flex flex-col items-center gap-4 cursor-pointer group/item">
+                            <div class="w-32 h-32 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-rose-50 shadow-lg group-hover/item:border-brand-red transition-all duration-500 p-1">
+                                <img alt="Bread" class="w-full h-full object-cover rounded-full group-hover/item:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=300&h=300">
+                            </div>
+                            <span class="font-serif font-bold text-gray-800 text-lg group-hover/item:text-brand-red">Artisan Bread</span>
+                        </div>
+                        <div onclick="filterMenuFromCategory('Cake')" class="flex-shrink-0 flex flex-col items-center gap-4 cursor-pointer group/item">
+                            <div class="w-32 h-32 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-rose-50 shadow-lg group-hover/item:border-brand-red transition-all duration-500 p-1">
+                                <img alt="Cake" class="w-full h-full object-cover rounded-full group-hover/item:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=300&h=300">
+                            </div>
+                            <span class="font-serif font-bold text-gray-800 text-lg group-hover/item:text-brand-red">Fudge Cake</span>
+                        </div>
+                    </div>
+                    <div class="absolute top-0 left-0 bottom-0 w-16 md:w-36 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+                    <div class="absolute top-0 right-0 bottom-0 w-16 md:w-36 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+                </div>
+            </section>
+
+            <!-- 10. TABLE RESERVATION & CUSTOM CAKE BOOKING SECTION -->
+            <section id="reservation" class="py-24 bg-[#111827] text-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-brand-red/20 rounded-full blur-[120px] pointer-events-none"></div>
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="text-center mb-14">
+                        <span class="inline-block py-1.5 px-4 rounded-full bg-white/10 text-rose-300 text-xs font-bold tracking-widest mb-4 uppercase">Book Your Spot</span>
+                        <h2 class="text-4xl md:text-5xl font-serif font-black mb-4">Table Reservation & Custom Orders</h2>
+                        <p class="text-gray-400 max-w-xl mx-auto">Reserve a cozy table at our bakery cafe or schedule a consultation for a custom celebration cake.</p>
+                    </div>
+                    <form id="reservation-form" onsubmit="handleReservationSubmit(event)" class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
+                        <div class="grid md:grid-cols-3 gap-6 mb-6">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">Full Name *</label>
+                                <input type="text" id="res-name" required placeholder="Syed Kashif" class="w-full px-4 py-3.5 rounded-xl bg-white/10 border border-white/15 text-white placeholder-gray-400 focus:outline-none focus:border-brand-red">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">Phone / WhatsApp *</label>
+                                <input type="tel" id="res-phone" required placeholder="0325-4038592" class="w-full px-4 py-3.5 rounded-xl bg-white/10 border border-white/15 text-white placeholder-gray-400 focus:outline-none focus:border-brand-red">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">Booking Type *</label>
+                                <select id="res-type" class="w-full px-4 py-3.5 rounded-xl bg-gray-800 border border-white/15 text-white focus:outline-none focus:border-brand-red">
+                                    <option value="Cafe Table Reservation">Cafe Table Reservation</option>
+                                    <option value="Birthday / Wedding Custom Cake">Custom Cake Consultation</option>
+                                    <option value="High-Tea Party Box">High-Tea / Catering Event</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-6 mb-6">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">Preferred Date *</label>
+                                <input type="date" id="res-date" required class="w-full px-4 py-3.5 rounded-xl bg-white/10 border border-white/15 text-white focus:outline-none focus:border-brand-red">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">Preferred Time *</label>
+                                <input type="time" id="res-time" required class="w-full px-4 py-3.5 rounded-xl bg-white/10 border border-white/15 text-white focus:outline-none focus:border-brand-red">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">Number of Guests</label>
+                                <select id="res-guests" class="w-full px-4 py-3.5 rounded-xl bg-gray-800 border border-white/15 text-white focus:outline-none focus:border-brand-red">
+                                    <option value="2 People">2 People</option>
+                                    <option value="4 People">4 People</option>
+                                    <option value="6+ People">6+ People (Family Table)</option>
+                                    <option value="Custom Event">Custom Cake Pickup</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">Special Notes / Cake Flavor Request</label>
+                            <textarea id="res-notes" rows="2" placeholder="Any allergies, cake inscription, or seating preference?" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder-gray-400 focus:outline-none focus:border-brand-red"></textarea>
+                        </div>
+                        <button type="submit" class="w-full md:w-auto px-10 py-4 bg-brand-red hover:bg-rose-700 text-white font-bold rounded-full shadow-lg shadow-brand-red/30 transition-all cursor-pointer">
+                            Confirm Reservation Now
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- 11. CUSTOMER REVIEWS SECTION -->
+            <section class="py-24 bg-rose-50 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="text-center mb-16">
+                        <span class="inline-block py-1.5 px-4 rounded-full bg-white text-brand-red text-xs font-bold tracking-widest mb-4 uppercase shadow-sm border border-rose-100">Sweet Words</span>
+                        <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-black text-gray-900 tracking-tight">Customer Reviews</h2>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-8 lg:gap-10">
+                        <div class="bg-white rounded-[2rem] p-8 md:p-10 shadow-[0_15px_40px_rgba(0,0,0,0.04)] relative group hover:-translate-y-2 transition-transform duration-500">
+                            <div class="flex gap-1 text-yellow-400 mb-6 text-lg">★★★★★</div>
+                            <p class="text-gray-600 text-lg font-medium leading-relaxed mb-8">"The most authentic croissants outside of Paris. Absolutely obsessed with their morning pastries and hot latte!"</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <img alt="Sarah Johnson" class="w-14 h-14 rounded-full object-cover border-2 border-rose-100" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Sarah Johnson</h4>
+                                    <p class="text-xs text-brand-red font-bold uppercase">Food Blogger</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-[2rem] p-8 md:p-10 shadow-[0_15px_40px_rgba(0,0,0,0.04)] relative group hover:-translate-y-2 transition-transform duration-500">
+                            <div class="flex gap-1 text-yellow-400 mb-6 text-lg">★★★★★</div>
+                            <p class="text-gray-600 text-lg font-medium leading-relaxed mb-8">"Every weekend we get the sourdough bread and fudge cake from SK MODS Bakery and it never disappoints."</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <img alt="Michael Chen" class="w-14 h-14 rounded-full object-cover border-2 border-rose-100" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Michael Chen</h4>
+                                    <p class="text-xs text-brand-red font-bold uppercase">Local Guide</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-[2rem] p-8 md:p-10 shadow-[0_15px_40px_rgba(0,0,0,0.04)] relative group hover:-translate-y-2 transition-transform duration-500">
+                            <div class="flex gap-1 text-yellow-400 mb-6 text-lg">★★★★★</div>
+                            <p class="text-gray-600 text-lg font-medium leading-relaxed mb-8">"Their espresso paired with the seasonal fruit tart is my favorite afternoon treat. Fast delivery too!"</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <img alt="Emma Davis" class="w-14 h-14 rounded-full object-cover border-2 border-rose-100" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Emma Davis</h4>
+                                    <p class="text-xs text-brand-red font-bold uppercase">Coffee Enthusiast</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 12. INTERACTIVE FAQ SECTION -->
+            <section class="py-24 bg-brand-pink/20 relative overflow-hidden">
+                <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-serif font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+                        <p class="text-gray-600">Have questions? Click any question below for instant answers.</p>
+                    </div>
+                    <div id="faq-accordion" class="space-y-4">
+                        <div class="faq-item bg-white rounded-2xl border border-rose-100/80 shadow-sm overflow-hidden">
+                            <button onclick="toggleFaq(0)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none cursor-pointer">
+                                <span class="font-bold text-gray-900 text-lg pr-8">Do you offer gluten-free or vegan options?</span>
+                                <span class="faq-icon text-brand-red transition-transform duration-300 rotate-180">▼</span>
+                            </button>
+                            <div class="faq-answer px-6 pb-6 text-gray-600 leading-relaxed">
+                                Yes! We have a dedicated selection of gluten-free and vegan pastries baked fresh daily. Please note they are prepared in a kitchen that also processes wheat and dairy.
+                            </div>
+                        </div>
+                        <div class="faq-item bg-white rounded-2xl border border-rose-100/80 shadow-sm overflow-hidden">
+                            <button onclick="toggleFaq(1)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none cursor-pointer">
+                                <span class="font-bold text-gray-900 text-lg pr-8">How far in advance should I order a custom cake?</span>
+                                <span class="faq-icon text-brand-red transition-transform duration-300">▼</span>
+                            </button>
+                            <div class="faq-answer hidden px-6 pb-6 text-gray-600 leading-relaxed">
+                                For custom birthday or wedding cakes, we recommend placing your order at least 48 to 72 hours in advance. Same-day ready-to-celebrate cakes are also available in our Menu section!
+                            </div>
+                        </div>
+                        <div class="faq-item bg-white rounded-2xl border border-rose-100/80 shadow-sm overflow-hidden">
+                            <button onclick="toggleFaq(2)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none cursor-pointer">
+                                <span class="font-bold text-gray-900 text-lg pr-8">Do you offer home delivery services?</span>
+                                <span class="faq-icon text-brand-red transition-transform duration-300">▼</span>
+                            </button>
+                            <div class="faq-answer hidden px-6 pb-6 text-gray-600 leading-relaxed">
+                                Yes! We offer fast doorstep delivery across the city within 45–60 minutes. You can checkout directly on our website and pay via Cash on Delivery, JazzCash, EasyPaisa, or Card.
+                            </div>
+                        </div>
+                        <div class="faq-item bg-white rounded-2xl border border-rose-100/80 shadow-sm overflow-hidden">
+                            <button onclick="toggleFaq(3)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none cursor-pointer">
+                                <span class="font-bold text-gray-900 text-lg pr-8">How should I store my freshly baked pastries?</span>
+                                <span class="faq-icon text-brand-red transition-transform duration-300">▼</span>
+                            </button>
+                            <div class="faq-answer hidden px-6 pb-6 text-gray-600 leading-relaxed">
+                                Croissants and artisan breads are best kept in an airtight bag at room temperature for up to 2 days (warm in the oven at 180°C for 3 minutes before serving). Cream cakes should be refrigerated immediately.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 13. CONTACT SECTION -->
+            <section id="contact" class="py-24 bg-gray-50 relative border-t border-gray-100 overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="text-center mb-16">
+                        <span class="inline-block py-1.5 px-4 rounded-full bg-white text-gray-600 border border-gray-200 text-xs font-bold tracking-widest mb-4 uppercase shadow-sm">Contact Us</span>
+                        <h2 class="text-4xl md:text-5xl lg:text-7xl font-serif font-black text-gray-900 mb-6 tracking-tight">Get In Touch</h2>
+                        <p class="text-gray-500 max-w-2xl mx-auto text-lg md:text-xl font-medium leading-relaxed">
+                            We'd love to hear from you! Whether you have a question about our menu, need a custom order, or just want to say hi.
+                        </p>
+                    </div>
+                    <div class="grid lg:grid-cols-5 gap-12 items-start">
+                        <div class="lg:col-span-3 bg-white rounded-3xl shadow-xl shadow-rose-100/50 p-8 md:p-10 border border-gray-100">
+                            <h3 class="text-2xl font-serif font-bold text-gray-900 mb-8">Send us a Message</h3>
+                            <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-6">
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium text-gray-700">First Name *</label>
+                                        <input id="contact-fname" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-colors" placeholder="Syed" type="text">
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium text-gray-700">Last Name *</label>
+                                        <input id="contact-lname" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-colors" placeholder="Kashif" type="text">
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-sm font-medium text-gray-700">Email Address *</label>
+                                    <input id="contact-email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-colors" placeholder="you@example.com" type="email">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-sm font-medium text-gray-700">Your Message *</label>
+                                    <textarea id="contact-msg" required rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-colors resize-none" placeholder="How can we help you?"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-brand-red text-white py-4 rounded-xl font-bold shadow-md hover:bg-rose-900 transition-all flex items-center justify-center gap-2 group cursor-pointer">
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="lg:col-span-2 space-y-6">
+                            <div class="flex items-start gap-4 p-6 rounded-2xl bg-brand-pink/30 border border-brand-pink">
+                                <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm text-brand-red shrink-0">📍</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-1">Our Location</h4>
+                                    <p class="text-gray-600">Faisalabad & Mian Channu, Punjab, Pakistan</p>
+                                </div>
+                            </div>
+                            <a href="tel:03254038592" class="flex items-start gap-4 p-6 rounded-2xl bg-brand-pink/30 border border-brand-pink hover:bg-brand-pink/50 transition-colors">
+                                <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm text-brand-red shrink-0">📞</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-1">Phone Number</h4>
+                                    <p class="text-gray-600">0325-4038592</p>
+                                </div>
+                            </a>
+                            <a href="mailto:syedkashifrazashah14@gmail.com" class="flex items-start gap-4 p-6 rounded-2xl bg-brand-pink/30 border border-brand-pink hover:bg-brand-pink/50 transition-colors">
+                                <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm text-brand-red shrink-0">✉️</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-1">Email Address</h4>
+                                    <p class="text-gray-600 break-all">syedkashifrazashah14@gmail.com</p>
+                                </div>
+                            </a>
+                            <div class="flex items-start gap-4 p-6 rounded-2xl bg-brand-pink/30 border border-brand-pink">
+                                <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm text-brand-red shrink-0">🕒</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-1">Opening Hours</h4>
+                                    <p class="text-gray-600">Mon-Sat: 7am - 10pm | Sun: 8am - 9pm</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ==================== FOOTER ==================== -->
+        <footer class="bg-white border-t border-gray-100">
+            <div class="bg-brand-pink/30 py-16">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Subscribe To Our Newsletter</h2>
+                    <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Get exclusive offers, fresh updates, and sweet surprises from SK MODS Bakery delivered straight to your inbox.</p>
+                    <form onsubmit="handleNewsletterSubmit(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                        <input id="newsletter-email" placeholder="Enter your email address" class="flex-1 px-6 py-3.5 rounded-full border border-gray-200 focus:outline-none focus:border-brand-red" required type="email">
+                        <button type="submit" class="bg-brand-red text-white px-8 py-3.5 rounded-full font-bold hover:bg-rose-900 transition-colors shadow-md cursor-pointer">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-1">
+                            <span class="font-serif text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-rose-500 tracking-tighter">SK MODS</span>
+                            <div class="w-2 h-2 rounded-full bg-brand-red mb-1"></div>
+                        </div>
+                        <p class="text-gray-500 text-sm leading-relaxed">Freshly baked breads, cakes, and treats, always delicious. Bringing happiness to your table every day.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://wa.me/923254038592" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-[#25D366]/10 text-[#25D366] font-bold text-xs hover:bg-[#25D366] hover:text-white transition-colors">WhatsApp</a>
+                            <a href="https://www.instagram.com/syed_pro_dev" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-[#E1306C]/10 text-[#E1306C] font-bold text-xs hover:bg-[#E1306C] hover:text-white transition-colors">Instagram</a>
+                            <a href="https://www.whatsapp.com/channel/0029Vb7gh604IBh9V6mWKN3q" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-blue-50 text-blue-600 font-bold text-xs hover:bg-blue-500 hover:text-white transition-colors">WhatsApp Channel</a>
+                            <a href="https://t.me/sk_mods" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-sky-50 text-sky-600 font-bold text-xs hover:bg-sky-500 hover:text-white transition-colors">Telegram</a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 mb-6 uppercase tracking-wider text-xs">Quick Links</h4>
+                        <ul class="space-y-3 text-sm font-medium">
+                            <li><a href="#home" class="text-gray-500 hover:text-brand-red transition-colors">Home</a></li>
+                            <li><a href="#products" class="text-gray-500 hover:text-brand-red transition-colors">Featured Creations</a></li>
+                            <li><a href="#about" class="text-gray-500 hover:text-brand-red transition-colors">Our Story</a></li>
+                            <li><a href="#menu" class="text-gray-500 hover:text-brand-red transition-colors">Full Menu</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 mb-6 uppercase tracking-wider text-xs">Categories</h4>
+                        <ul class="space-y-3 text-sm font-medium">
+                            <li><a href="#menu" onclick="filterMenuFromCategory('Cake')" class="text-gray-500 hover:text-brand-red transition-colors">Artisan Cakes</a></li>
+                            <li><a href="#menu" onclick="filterMenuFromCategory('Bread')" class="text-gray-500 hover:text-brand-red transition-colors">Fresh Breads</a></li>
+                            <li><a href="#menu" onclick="filterMenuFromCategory('Cookies')" class="text-gray-500 hover:text-brand-red transition-colors">Cookies & Macarons</a></li>
+                            <li><a href="#menu" onclick="filterMenuFromCategory('Coffee')" class="text-gray-500 hover:text-brand-red transition-colors">Coffee & Beverages</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 mb-6 uppercase tracking-wider text-xs">Developer</h4>
+                        <p class="text-sm text-gray-500 mb-4">Crafted with precision and passion by Syed Kashif (SK MODS AI Web Developer).</p>
+                        <p class="text-xs text-gray-400">© 2026 SK MODS Bakery & Mart. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
